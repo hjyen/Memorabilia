@@ -1,0 +1,32 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}694 App{% endblock %}
+{% block navbar %}
+  <div class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Sunday Funday</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"> Home</span></a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="page-header">
+    {% if name %}
+      <h1>Hello, {{ name | capitalize }}. It&#39s nice to see you.</h1>
+    {% else %}
+      <h1>Hello, new person.</h1>
+    {% endif %}
+    <h1>What would you like me to call you?</h1>
+    {{ wtf.quick_form(form) }}
+  </div>
+</div>
+{% endblock %}

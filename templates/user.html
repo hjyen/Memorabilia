@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}694 App Form{% endblock %}
+
+{% block page_content %}
+
+<div class="page-header">
+    <h1>Hello, this is the user page for {{ existinguser.username }}!</h1>
+    <h2>{{ existinguser.username }} is {{ existinguser.ready }}.</h2>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}694 App Form{% endblock %}
+
+{% block page_content %}
+
+
+<p>&nbsp;
+<div class="nav nav-tabs">
+    <ul class="nav nav-tabs">
+        <li>Users</li>
+           </ul>
+           <ul class="Ready">
+              {% for otheruser in otherusers %}
+               <li> <a href="user/{{ otheruser.username }}"> {{ otheruser.username }}</a></li>
+               {% endfor %}
+           </ul>
+
+</div>
+
+{% endblock %}

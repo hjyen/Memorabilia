@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}694 App - Register{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Register - Note: This site is for demonstration purposes only. Any use beyond demonstration by the author is prohibited.</h1>
+</div>
+<div class="col-md-4">
+    {{ wtf.quick_form(form) }}
+</div>
+{% endblock %}

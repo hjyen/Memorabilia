@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}694 App Form{% endblock %}
+
+{% block page_content %}
+
+<div class="page-header">
+    <h1>Hello, {{ current_user.username }}! This is a list of Sunday Fundays</h1>
+</div>
+
+<p>&nbsp;
+<div class="post-list">
+  <ul class="posts">
+      {% for funday in fundays %}
+      <li class="post">
+          <div class="funday-content">
+              <div class="post-info"><h2>{{ funday.title }} by <a href="/users/{{ funday.author.username }}">{{ funday.author.username }}</a></h2></div>
+              <div class="post-body">
+                <ul>
+                    <li>  {{ funday.thing1 }}
+                    <li>  {{ funday.thing2 }}
+                    <li>  {{ funday.thing3 }}
+                    <li>  {{ funday.thing4 }}
+                    <li>  {{ funday.thing5 }}
+                  </ul>
+              </div>
+          </div>
+      </li>
+      {% endfor %}
+  </ul></div>
+
+
+
+{% endblock %}
