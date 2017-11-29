@@ -6,7 +6,7 @@
 {% block page_content %}
 
 <div class="page-header">
-    <h1>Hello, {{ current_user.username }}! Your memories</h1>
+    <h1>Location Memories</h1>
 </div>
 
 <p>&nbsp;
@@ -15,9 +15,10 @@
       {% for funday in fundays %}
       <li class="post">
           <div class="funday-content">
-              <div class="post-info"><h2>{{ funday.title }} by <a href="/users/{{ funday.author.username }}">{{ funday.author.username }}</a></h2></div>
+              <div class="post-info"><h2>{{ funday.thing2 }}</h2></div>
               <div class="post-body">
                 <ul>
+                	<li class="memory-title">  Memory Title: {{ funday.title }}
                     <li>  Memory Description: {{ funday.thing1 }}
                     <li>  Location: {{ funday.thing2 }}
                     <li>  {{ funday.timestamp }}
