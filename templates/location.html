@@ -1,34 +1,41 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}694 App Form{% endblock %}
+{% block title %}Memorabilia Location{% endblock %}
 
 {% block page_content %}
+
+
 
 <div class="page-header">
     <h1>Location Memories</h1>
 </div>
+
+<div class="place-block">
+	<p>location</p>
+</div>
+
+<div class = "map-block"></div>
 
 <p>&nbsp;
 <div class="post-list">
   <ul class="posts">
       {% for funday in fundays %}
       <li class="post">
-          <div class="funday-content">
-              <div class="post-info"><h2>{{ funday.thing2 }}</h2></div>
-              <div class="post-body">
-                <ul>
-                	<li class="memory-title">  Memory Title: {{ funday.title }}
-                    <li>  Memory Description: {{ funday.thing1 }}
-                    <li>  Location: {{ funday.thing2 }}
-                    <li>  {{ funday.timestamp }}
-                  </ul>
+            <div class="memory-content funday-content">
+              <div class="m-content-top">
+                <div class=m-time>{{ funday.timestamp }}</div>
+                <div class=m-location>{{ funday.thing2 }}</div>
               </div>
+              <div class=m-media><img src="#"></div>
+              <div class="post-info">
+              	<div><h4>{{ funday.title }} by <a href="/users/{{ funday.author.username }}">{{ funday.author.username }}</a></h4></div>
+              	<button>like</button>
+              </div>
+              <div class="post-body">{{ funday.thing1 }}</div>
           </div>
       </li>
       {% endfor %}
   </ul></div>
-
-
 
 {% endblock %}

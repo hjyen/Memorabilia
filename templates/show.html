@@ -1,33 +1,35 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}694 App Form{% endblock %}
+{% block title %}Memorabilia Personal Memory{% endblock %}
 
 {% block page_content %}
 
 <div class="page-header">
-    <h1>Hello, {{ current_user.username }}! Your memories</h1>
+    <h1>Your memories</h1>
 </div>
+<div class = "map-block"></div>
 
 <p>&nbsp;
 <div class="post-list">
   <ul class="posts">
       {% for funday in fundays %}
       <li class="post">
-          <div class="funday-content">
-              <div class="post-info"><h2>{{ funday.title }} by <a href="/users/{{ funday.author.username }}">{{ funday.author.username }}</a></h2></div>
-              <div class="post-body">
-                <ul>
-                    <li>  Memory Description: {{ funday.thing1 }}
-                    <li>  Location: {{ funday.thing2 }}
-                    <li>  {{ funday.timestamp }}
-                  </ul>
+          <div class="memory-content funday-content">
+              <div class="m-content-top">
+                <div class=m-time>{{ funday.timestamp }}</div>
+                <div class=m-location>{{ funday.thing2 }}</div>
               </div>
+              <div class=m-media><img src="#"></div>
+              <div class="post-info">
+                <div><h4>{{ funday.title }} by <a href="/users/{{ funday.author.username }}">{{ funday.author.username }}</a></h4></div>
+                <button class="btn-unclickable">like</button>
+              </div>
+              <div class="post-body">{{ funday.thing1 }}</div>
+              <button>like</button>
           </div>
       </li>
       {% endfor %}
   </ul></div>
-
-
 
 {% endblock %}

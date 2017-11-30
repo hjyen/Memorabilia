@@ -1,11 +1,12 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 {% extends "bootstrap/base.html" %}
 
-{% block title %}694 App{% endblock %}
+{% block title %}Memorabilia{% endblock %}
 {% block navbar %}
   <div class="navbar navbar-default" role="navigation">
     <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/">Sunday Funday</a>
+          <a class="navbar-brand" href="/">Memorabilia</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -14,14 +15,6 @@
             <ul class="nav navbar-nav">
                 <li><a href="users">All Users</a></li>
             </ul>
-            <ul class="nav navbar-nav">
-                <li><a href="funday">Create Memory</a></li>
-            </ul>
-            <ul class="nav navbar-nav">
-                <li><a href="show">Show Personal Memories</a></li>
-            </ul>
-            <ul class="nav navbar-nav">
-                <li><a href="location">Location Memories</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if current_user.is_authenticated %}
@@ -31,7 +24,6 @@
                 {% endif %}
             </ul>
         </div>
-
       </div>
     </div>
 {% endblock %}
@@ -47,4 +39,37 @@
 <div class="container">
   {% block page_content %}blah{% endblock %}
 </div>
+
+<footer class="page-footer">
+
+    <!--Footer Links-->
+    <div class="container">
+
+        <!--Grid row-->
+        <div class="row mb-12 text-center d-flex justify-content-center">
+
+            <!--Grid column-->
+            <div class="col-md-3 mb-4">
+                <h6 class="title font-bold"><a href="funday">Create Memory</a></h6>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-md-3 mb-4">
+                <h6 class="title font-bold"><a href="show">Personal Memory</a></h6>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-md-3 mb-4">
+                <h6 class="title font-bold"><a href="location">View Location</a></h6>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
 {% endblock %}
+
+
+

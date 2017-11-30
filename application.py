@@ -78,7 +78,7 @@ class FundayForm(Form):
     title = StringField('Memory Title', validators=[
         Required(), Length(1, 64)])
     thing1 = StringField('Memory Description', validators=[
-        Required(), Length(1, 64)])
+        Required(), Length(1, 100)])
     thing2 = StringField('Location', validators=[
                 Required(), Length(1, 64)])
     # thing3 = StringField('Fun Thing 3', validators=[
@@ -146,7 +146,7 @@ def funday(): #index function
             flash('Memory Created. Create another?')
             return redirect(url_for('funday'))
     otherusers=User.query.all()
-    return render_template('index.html', form=form)
+    return render_template('funday.html', form=form)
 
 @app.route('/show', methods=['GET']) #define the route for <server>/
 @login_required
