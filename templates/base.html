@@ -1,12 +1,20 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 {% extends "bootstrap/base.html" %}
 
+
 {% block title %}Memorabilia{% endblock %}
 {% block navbar %}
   <div class="navbar navbar-default" role="navigation">
     <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href="/">Memorabilia</a>
+          <ul class="nav navbar-nav navbar-right">
+                {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                {% else %}
+                <li><a href="{{ url_for('login') }}">Log In</a></li>
+                {% endif %}
+        </ul>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -16,20 +24,13 @@
                 <li><a href="users">All Users</a></li>
             </ul>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                {% if current_user.is_authenticated %}
-                <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-                {% else %}
-                <li><a href="{{ url_for('login') }}">Log In</a></li>
-                {% endif %}
-            </ul>
         </div>
       </div>
     </div>
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container body-container">
     {% for message in get_flashed_messages() %}
     <div class="alert alert-warning">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -37,32 +38,20 @@
     </div>
     {% endfor %}
 <div class="container">
-  {% block page_content %}blah{% endblock %}
+{% block page_content %}blah{% endblock %}
 </div>
 
 <footer class="page-footer">
-
-    <!--Footer Links-->
     <div class="container">
-
-        <!--Grid row-->
         <div class="row mb-12 text-center d-flex justify-content-center">
-
-            <!--Grid column-->
             <div class="col-md-3 mb-4">
                 <h6 class="title font-bold"><a href="funday">Create Memory</a></h6>
             </div>
-            <!--Grid column-->
-
-            <!--Grid column-->
             <div class="col-md-3 mb-4">
-                <h6 class="title font-bold"><a href="show">Personal Memory</a></h6>
+                <h6 class="title font-bold"><a href="show">Personal Memories</a></h6>
             </div>
-            <!--Grid column-->
-
-            <!--Grid column-->
             <div class="col-md-3 mb-4">
-                <h6 class="title font-bold"><a href="location">View Location</a></h6>
+                <h6 class="title font-bold"><a href="location">Location Memories</a></h6>
             </div>
         </div>
     </div>

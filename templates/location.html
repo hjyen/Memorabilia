@@ -24,15 +24,25 @@
       <li class="post">
             <div class="memory-content funday-content">
               <div class="m-content-top">
-                <div class=m-time>{{ funday.timestamp }}</div>
-                <div class=m-location>{{ funday.thing2 }}</div>
+                <div class=m-time>{{ funday.timestamp.strftime('%b %d, %Y at %H:%M') }}</div>
+                <div class=m-location>{{ funday.location }}</div>
               </div>
               <div class=m-media><img src="#"></div>
               <div class="post-info">
-              	<div><h4>{{ funday.title }} by <a href="/users/{{ funday.author.username }}">{{ funday.author.username }}</a></h4></div>
-              	<button>like</button>
+              	<div><h4>{{ funday.title }}</a></h4></div>
+              <!-- 	<div><h4>{{ funday.title }} by <a href="/users/{{ funday.author.username }}">{{ funday.author.username }}</a></h4></div> -->
+              	<div>
+              		<button class="btn-clickable">like </button>
+              		<span>{{ funday.like_num}}</span>
+              	</div>
               </div>
-              <div class="post-body">{{ funday.thing1 }}</div>
+              <input id="toggle" type="checkbox" checked>
+              <label class="see-more" for="toggle"></label>
+              <div id="collaps">
+              	<section class="post-body">
+      				<p>{{ funday.description }}</p>
+    			</section>
+  			  </div>
           </div>
       </li>
       {% endfor %}

@@ -74,21 +74,17 @@ class RegistrationForm(Form):
     def validate_email(self, field):
         if User.query.filter_by(email=field.data).first():
             raise ValidationError('Email taken')
+            
 class FundayForm(Form):
     title = StringField('Memory Title', validators=[
         Required(), Length(1, 64)])
-    thing1 = StringField('Memory Description', validators=[
-        Required(), Length(1, 100)])
-    thing2 = StringField('Location', validators=[
+    description = StringField('Memory Description', validators=[
+        Required(), Length(1, 500)])
+    location = StringField('Location', validators=[
                 Required(), Length(1, 64)])
-    # thing3 = StringField('Fun Thing 3', validators=[
+    # content = StringField('Media', validators=[
     #     Required(), Length(1, 64)])
-    # thing4 = StringField('Fun Thing 4', validators=[
-    #     Required(), Length(1, 64)])
-    # thing5 = StringField('Fun Thing 5', validators=[
-    #         Required(), Length(1, 64)])
     submit = SubmitField('Share Memory')
-
 
 
 #login route
@@ -141,10 +137,10 @@ def index(): #index function
 def funday(): #index function
     form = FundayForm()
     if form.validate_on_submit():
-            newfunday=Funday(title=form.title.data, thing1=form.thing1.data, thing2=form.thing2.data, author=current_user._get_current_object())
+            newfunday=Funday(title=form.title.data, location=form.location.data, description=form.description.data, like_num=0, author=current_user._get_current_object())
             db.session.add(newfunday)
-            flash('Memory Created. Create another?')
-            return redirect(url_for('funday'))
+            # flash('Memory Created. Create another?')
+            return redirect(url_for('location'))
     otherusers=User.query.all()
     return render_template('funday.html', form=form)
 
@@ -159,6 +155,7 @@ def show(): #index function
 def location(): #index function
     fundays=Funday.query.order_by(Funday.timestamp.desc()).all()
     return render_template('location.html', fundays=fundays)
+
 
 @app.route('/follow/<username>')
 @login_required
@@ -232,15 +229,23 @@ class Funday(db.Model):
     __tablename__ = 'fundays'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.Text)
-    thing1 = db.Column(db.Text)
-    thing2 = db.Column(db.Text)
-    # thing3 = db.Column(db.Text)
-    # thing4 = db.Column(db.Text)
-    # thing5 = db.Column(db.Text)
+    description = db.Column(db.Text)
+    location = db.Column(db.Text)
+    content = db.Column(db.Text)
+    like_num = db.Column(db.Integer)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-#user class - includes the UserMixin from flash.ext.login to help with password hashing, etc.
+
+# class Like(db.Model):
+#     __tablename__ = 'likes'
+#     liked_id = db.Column(db.Integer, db.ForeignKey('fundays.liked_id'),
+#                             primary_key=True)
+#     like_num = db.Column(db.Integer)
+#     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow) 
+
+
+# user class - includes the UserMixin from flash.ext.login to help with password hashing, etc.
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
